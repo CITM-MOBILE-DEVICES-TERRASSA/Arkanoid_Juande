@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int points = 0;
 
 
-    public void LosseHealth()
+    public void LoseHealth()
     {
         lives--;
 
