@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // Al iniciar el juego, carga las vidas y puntos guardados
+        lives = GameData.LoadLives();
+        points = GameData.LoadPoints();
+
         UpdateUI(); // Actualiza la UI al iniciar el juego
     }
 
@@ -28,6 +32,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            // Guardar el nuevo estado de vidas
+            GameData.SaveData(lives, points);
             ResetLevel();
         }
     }
@@ -36,6 +42,9 @@ public class GameManager : MonoBehaviour
     {
         points += amount; // Suma los puntos especificados
         UpdateUI(); // Actualiza la UI al ganar puntos
+
+        // Guardar el nuevo estado de puntos
+        GameData.SaveData(lives, points);
     }
 
     public void ResetLevel()
@@ -48,5 +57,10 @@ public class GameManager : MonoBehaviour
     {
         livesText.text = "Vidas: " + lives; // Actualiza el texto de vidas
         pointsText.text = "Puntos: " + points; // Actualiza el texto de puntos
+    }
+
+    public void SaveGame()
+    {
+        GameData.SaveData(lives, points); // Guardar los datos manualmente si es necesario
     }
 }

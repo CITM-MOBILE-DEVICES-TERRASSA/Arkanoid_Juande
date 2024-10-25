@@ -4454,9 +4454,10 @@ GameObject:
   - component: {fileID: 1593697044}
   - component: {fileID: 1593697046}
   - component: {fileID: 1593697047}
-  - component: {fileID: 1593697048}
   - component: {fileID: 1593697049}
   - component: {fileID: 1593697050}
+  - component: {fileID: 1593697051}
+  - component: {fileID: 1593697048}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4669,6 +4670,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 392281879}
   platform: {fileID: 313658650}
+--- !u!114 &1593697051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593697040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d001276868d5848a0fd083099e3902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1626495768
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class GameOverScene : MonoBehaviour
 
     public void ResetGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("MainMenu");
     }
 
 
