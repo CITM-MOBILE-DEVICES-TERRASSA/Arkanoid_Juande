@@ -29,12 +29,12 @@ public class Brick : MonoBehaviour
 
     private void HandleCollision()
     {
-        LoseLife();
+        LoseLife(1);
     }
 
-    private void LoseLife()
+    public void LoseLife(int damage)
     {
-        lives--; // Reduce una vida
+        lives-=damage; // Reduce una vida
         Debug.Log($"Vidas restantes: {lives}"); // Para depuración
 
         if (lives > 0)
@@ -70,6 +70,13 @@ public class Brick : MonoBehaviour
             brickCounter.BrickDestroyed(); // Notifica que un brick ha sido destruido
         }
 
+        // Añadir puntos al destruir un brick
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager != null)
+        {
+            gameManager.GainPoints(1); // Suma 1 punto
+        }
+
         Destroy(gameObject); // Destruye el brick si no tiene más vidas
     }
 
@@ -81,11 +88,11 @@ public class Brick : MonoBehaviour
         if (IsColorIndexValid(colorIndex)) // Verifica que haya un color asignado
         {
             spriteRenderer.color = colors[colorIndex]; // Cambia el color según las vidas restantes
-            Debug.Log($"Color actualizado a: {spriteRenderer.color} con {lives} vidas restantes");
+            //Debug.Log($"Color actualizado a: {spriteRenderer.color} con {lives} vidas restantes");
         }
         else
         {
-            Debug.LogWarning($"Índice de color inválido: {colorIndex} para {lives} vidas restantes.");
+            //Debug.LogWarning($"Índice de color inválido: {colorIndex} para {lives} vidas restantes.");
         }
     }
 

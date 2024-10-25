@@ -28,8 +28,6 @@ public class BrickCounter : MonoBehaviour
 
     private void LoadNextScene()
     {
-        // Aquí puedes definir la lógica para cargar la siguiente escena
-        // Por ejemplo, podrías usar el nombre de la escena o su índice
-        SceneManager.LoadScene("NextScene"); // Cambia "NextScene" por el nombre real de tu escena
+        SceneManager.LoadScene("Level2");
     }
 }

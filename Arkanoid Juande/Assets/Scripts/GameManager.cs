@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public int points = 0;
 
-    // Referencias a los componentes TextMeshPro
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI pointsText;
 
@@ -33,9 +32,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GainPoints()
+    public void GainPoints(int amount)
     {
-        points++;
+        points += amount; // Suma los puntos especificados
         UpdateUI(); // Actualiza la UI al ganar puntos
     }
 
