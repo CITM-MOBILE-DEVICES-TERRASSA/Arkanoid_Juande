@@ -3498,6 +3498,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   points: 0
+  livesText: {fileID: 321467948}
+  pointsText: {fileID: 384897302}
 --- !u!114 &1593697044
 MonoBehaviour:
   m_ObjectHideFlags: 0
