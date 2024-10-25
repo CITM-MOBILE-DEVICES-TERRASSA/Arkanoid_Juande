@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI highScoreText; // Texto para mostrar la puntuación máxima
 
     private void Start()
     {
@@ -19,6 +20,19 @@ public class GameManager : MonoBehaviour
         points = GameData.LoadPoints();
 
         UpdateUI(); // Actualiza la UI al iniciar el juego
+        UpdateHighScoreUI(); // Actualiza la UI de la puntuación máxima
+    }
+
+    public void NewGame()
+    {
+        // Reinicia las vidas y puntos, pero conserva la puntuación máxima
+        lives = 3; // O el valor que desees
+        points = 0; // Reinicia los puntos
+
+        // Guarda los nuevos datos (vidas y puntos)
+        GameData.SaveData(lives, points);
+
+        UpdateUI(); // Actualiza la UI
     }
 
     public void LoseHealth()
@@ -45,6 +59,7 @@ public class GameManager : MonoBehaviour
 
         // Guardar el nuevo estado de puntos
         GameData.SaveData(lives, points);
+        CheckHighScore(); // Verifica y guarda la puntuación máxima
     }
 
     public void ResetLevel()
@@ -57,6 +72,22 @@ public class GameManager : MonoBehaviour
     {
         livesText.text = "Vidas: " + lives; // Actualiza el texto de vidas
         pointsText.text = "Puntos: " + points; // Actualiza el texto de puntos
+    }
+
+    private void UpdateHighScoreUI()
+    {
+        int highScore = GameData.LoadHighScore(); // Carga la puntuación máxima
+        highScoreText.text = "Máxima Puntuación: " + highScore; // Actualiza el texto de la puntuación máxima
+    }
+
+    private void CheckHighScore()
+    {
+        int highScore = GameData.LoadHighScore(); // Carga la puntuación máxima
+        if (points > highScore)
+        {
+            GameData.SaveHighScore(points); // Actualiza la puntuación máxima
+            UpdateHighScoreUI(); // Actualiza el texto de la puntuación máxima
+        }
     }
 
     public void SaveGame()

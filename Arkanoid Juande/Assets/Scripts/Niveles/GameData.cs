@@ -4,6 +4,7 @@ public class GameData : MonoBehaviour
 {
     private const string LivesKey = "Lives";
     private const string PointsKey = "Points";
+    private const string HighScoreKey = "HighScore"; // Clave para la puntuación máxima
 
     // Método para guardar las vidas y los puntos en PlayerPrefs
     public static void SaveData(int lives, int points)
@@ -23,6 +24,19 @@ public class GameData : MonoBehaviour
     public static int LoadPoints(int defaultPoints = 0)
     {
         return PlayerPrefs.GetInt(PointsKey, defaultPoints);
+    }
+
+    // Método para cargar la puntuación máxima; si no existe, devuelve 0
+    public static int LoadHighScore(int defaultHighScore = 0)
+    {
+        return PlayerPrefs.GetInt(HighScoreKey, defaultHighScore);
+    }
+
+    // Método para guardar la puntuación máxima
+    public static void SaveHighScore(int highScore)
+    {
+        PlayerPrefs.SetInt(HighScoreKey, highScore);
+        PlayerPrefs.Save(); // Guarda los datos en disco
     }
 
     // Método para borrar los datos guardados (opcional, útil para "Nueva Partida")
