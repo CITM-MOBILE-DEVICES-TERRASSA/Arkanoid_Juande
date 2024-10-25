@@ -6,6 +6,7 @@ public class ParticleManager : MonoBehaviour
 
     public void CreateBrickDeathParticle(Vector3 position)
     {
+
         Instantiate(particlePrefab, position, Quaternion.identity);
     }
 }
