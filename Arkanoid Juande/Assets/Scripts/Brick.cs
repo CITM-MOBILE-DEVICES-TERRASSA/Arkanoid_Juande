@@ -63,8 +63,16 @@ public class Brick : MonoBehaviour
             audioManager.PlayBrickBreakSound(); // Llama al método para reproducir el sonido
         }
 
+        // Obtén la referencia al BrickCounter y llama al método BrickDestroyed
+        BrickCounter brickCounter = FindObjectOfType<BrickCounter>();
+        if (brickCounter != null)
+        {
+            brickCounter.BrickDestroyed(); // Notifica que un brick ha sido destruido
+        }
+
         Destroy(gameObject); // Destruye el brick si no tiene más vidas
     }
+
 
     private void UpdateColor()
     {

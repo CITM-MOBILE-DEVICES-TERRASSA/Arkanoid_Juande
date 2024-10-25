@@ -3462,6 +3462,7 @@ GameObject:
   - component: {fileID: 1593697043}
   - component: {fileID: 1593697045}
   - component: {fileID: 1593697044}
+  - component: {fileID: 1593697046}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3526,6 +3527,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickBreakSound: {fileID: 8300000, guid: 31ca72e05cacec74b9d016ee663b67dc, type: 3}
+--- !u!114 &1593697046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593697040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03867287efc59a46a3a795a7eaa7465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1626495768
 PrefabInstance:
   m_ObjectHideFlags: 0
