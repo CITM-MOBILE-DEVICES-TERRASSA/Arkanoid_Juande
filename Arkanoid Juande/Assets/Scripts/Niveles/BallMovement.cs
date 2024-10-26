@@ -3,7 +3,7 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     public new Rigidbody2D rigidbody2D;
-    public float speed = 300;
+    public float initialSpeed = 150; // Velocidad inicial más baja
     private Vector2 velocity;
     Vector2 startPosition;
 
@@ -11,6 +11,7 @@ public class BallMovement : MonoBehaviour
     private AudioSource audioSource;
 
     private bool isLaunched = false; // Variable para verificar si la bola ha sido lanzada
+    private float speedIncrementFactor = 1.02f; // Incremento de velocidad (porcentaje) por cada choque
 
     private void Start()
     {
@@ -45,6 +46,10 @@ public class BallMovement : MonoBehaviour
         {
             FindAnyObjectByType<GameManager>().LoseHealth();
         }
+        else // Para incrementar la velocidad en cualquier otro choque
+        {
+            IncreaseSpeed(); // Aumenta la velocidad
+        }
     }
 
     public void ResetBall()
@@ -59,7 +64,7 @@ public class BallMovement : MonoBehaviour
         velocity.x = Random.Range(-1f, 1f);
         velocity.y = 1;
 
-        rigidbody2D.AddForce(velocity.normalized * speed); // Lanza la bola
+        rigidbody2D.AddForce(velocity.normalized * initialSpeed); // Lanza la bola
         isLaunched = true; // Marca que la bola ha sido lanzada
     }
 
@@ -68,5 +73,11 @@ public class BallMovement : MonoBehaviour
         // Mantiene la posición de la bola en la plataforma
         float platformX = FindObjectOfType<SliderMovement>().transform.position.x; // Obtiene la posición X de la plataforma
         transform.position = new Vector2(platformX, transform.position.y); // Establece la posición de la bola
+    }
+
+    private void IncreaseSpeed()
+    {
+        // Aumenta la velocidad actual de la bola un poco
+        rigidbody2D.velocity *= speedIncrementFactor; // Incremento gradual de la velocidad
     }
 }
