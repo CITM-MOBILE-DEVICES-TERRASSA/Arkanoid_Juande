@@ -22,20 +22,18 @@ public class MainMenu : MonoBehaviour
         // Carga las vidas y puntos guardados
         int savedLives = GameData.LoadLives();
         int savedPoints = GameData.LoadPoints();
+        int currentSceneIndex = GameData.LoadCurrentSceneIndex();
 
         // Verifica si los datos son los predeterminados
         if (savedLives == 3 && savedPoints == 0)
         {
-            // Desactiva el botón y cambia el color y el texto
             DisableContinueButton();
         }
         else
         {
-            // Si hay datos, activa el botón y actualiza el texto de vidas y puntos
-            EnableContinueButton(savedLives, savedPoints);
+            EnableContinueButton(savedLives, savedPoints, currentSceneIndex);
         }
 
-        // Cargar y mostrar el High Score
         int highScore = GameData.LoadHighScore();
         highScoreText.text = "High Score: " + highScore; // Actualiza el texto con el High Score
     }
@@ -50,28 +48,36 @@ public class MainMenu : MonoBehaviour
         continueButton.colors = colors;
     }
 
-    private void EnableContinueButton(int savedLives, int savedPoints)
+    private void EnableContinueButton(int savedLives, int savedPoints, int currentSceneIndex)
     {
-        continueButton.interactable = true;
-        continueText.text = "Continue";
-        livesText.text = "Lives: " + savedLives; // Actualiza el texto de vidas
-        pointsText.text = "Points: " + savedPoints; // Actualiza el texto de puntos
+        Debug.Log("Habilitando botón de continuar...");
 
-        // Cargar y mostrar el índice de la escena donde se quedó el jugador
-        int currentSceneIndex = GameData.LoadCurrentSceneIndex();
-        string currentScene = SceneManager.GetSceneByBuildIndex(currentSceneIndex).name; // Obtener el nombre de la escena usando el índice
-        currentSceneText.text = "Map: " + currentScene; // Actualiza el texto con el nombre de la escena
+        if (continueButton == null) Debug.LogError("continueButton es null");
+        else continueButton.interactable = true;
+
+        if (continueText == null) Debug.LogError("continueText es null");
+        else continueText.text = "Continue";
+
+        if (livesText == null) Debug.LogError("livesText es null");
+        else livesText.text = "Lives: " + savedLives;
+
+        if (pointsText == null) Debug.LogError("pointsText es null");
+        else pointsText.text = "Points: " + savedPoints;
+
+        if (currentSceneText == null) Debug.LogError("currentSceneText es null");
+        else currentSceneText.text = "Map: " + currentSceneIndex;
     }
+
 
     public void ContinueGame()
     {
-        int currentSceneIndex = GameData.LoadCurrentSceneIndex(); // Carga el índice de la escena guardada
-        SceneManager.LoadScene(currentSceneIndex); // Carga la escena usando el índice
+        int currentSceneIndex = GameData.LoadCurrentSceneIndex();
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     public void NewGame()
     {
-        GameData.ResetData(); // Reinicia los datos guardados
+        GameData.ResetData();
         SceneManager.LoadScene("Level1");
     }
 }

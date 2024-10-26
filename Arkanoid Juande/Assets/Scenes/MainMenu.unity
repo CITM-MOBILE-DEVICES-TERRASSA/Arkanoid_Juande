@@ -676,7 +676,6 @@ GameObject:
   m_Component:
   - component: {fileID: 937276451}
   - component: {fileID: 937276452}
-  - component: {fileID: 937276453}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -717,18 +716,6 @@ MonoBehaviour:
   pointsText: {fileID: 99811338}
   currentSceneText: {fileID: 1754896367}
   highScoreText: {fileID: 1028111672}
---- !u!114 &937276453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937276450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0d001276868d5848a0fd083099e3902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1014097575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,7 +1213,7 @@ GameObject:
   - component: {fileID: 1431540815}
   - component: {fileID: 1431540814}
   m_Layer: 5
-  m_Name: Puntos Maximos
+  m_Name: Maximos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1248,7 +1235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -348}
+  m_AnchoredPosition: {x: 0, y: -348}
   m_SizeDelta: {x: 485.45, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1431540814
