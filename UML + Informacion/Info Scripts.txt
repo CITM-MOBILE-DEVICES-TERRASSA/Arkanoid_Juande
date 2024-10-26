@@ -1,0 +1,97 @@
+-----------------------------------------------------------------------------------BrickCounter:
+
+Lleva un registro del número total de ladrillos en la escena y cuántos han sido destruidos.
+Carga el menú de victoria una vez que todos los ladrillos han sido destruidos.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------GameAudioManager:
+
+Gestiona los sonidos del juego, en particular el sonido de romper ladrillos.
+Reproduce el sonido cuando se llama al método PlayBrickBreakSound.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------GameData:
+
+Maneja el almacenamiento y recuperación de datos del juego usando PlayerPrefs.
+Guarda y carga vidas, puntos, la puntuación máxima y el índice de la escena actual.
+Incluye un método para restablecer los datos guardados.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------GameManager:
+
+Controla la lógica del juego, incluyendo la gestión de vidas y puntos.
+Actualiza la interfaz de usuario (UI) con los valores actuales y permite iniciar un nuevo juego.
+Guarda datos al ganar puntos y verifica si se ha alcanzado una nueva puntuación máxima.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------NukePowerUp:
+
+Detecta la colisión con la bola y activa un efecto de power-up que aplica daño a todos los ladrillos en pantalla.
+Destruye el objeto del power-up después de activarse.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------ParticleManager:
+
+Maneja la creación de partículas para efectos de destrucción de ladrillos y golpes.
+Crea partículas en una posición específica y se destruye después de un tiempo definido.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------PlatformAI:
+
+Controla la plataforma del jugador utilizando IA para seguir la posición de la bola.
+Permite activar o desactivar el control automático.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------PowerUpManager:
+
+Gestiona la aplicación de efectos de power-up a los ladrillos.
+Encuentra todos los ladrillos en la escena y les aplica daño.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------SliderMovement:
+
+Controla el movimiento de la plataforma del jugador utilizando un slider UI.
+Mapea el valor del slider a la posición X de la plataforma dentro de los límites de la pantalla y permite reiniciar la posición del slider.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------BallMovement:
+
+Controla el movimiento de la bola, incluyendo su lanzamiento y rebote.
+Implementa la lógica para aumentar la velocidad de la bola en cada rebote.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------Brick:
+
+Representa un ladrillo en el juego.
+Maneja la lógica de la vida del ladrillo y su destrucción al ser golpeado por la bola.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------PauseMenu:
+
+Controla la lógica del menú de pausa.
+Permite pausar el juego y volver al juego o salir al menú principal.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------GameOverScene:
+
+Controla la lógica del menú de Game Over.
+Permite al jugador reiniciar el juego o regresar al menú principal.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------MainMenu:
+
+Controla la lógica del menú principal del juego.
+Permite iniciar un nuevo juego o cargar una partida guardada.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------VictoryMenu:
+
+Controla la lógica del menú de victoria.
+Permite al jugador continuar al siguiente nivel o regresar al menú principal.
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------HighScoreManager:
+
+Maneja la lógica de la puntuación más alta.
+Guarda y carga la puntuación más alta del jugador.
+-----------------------------------------------------------------------------------
