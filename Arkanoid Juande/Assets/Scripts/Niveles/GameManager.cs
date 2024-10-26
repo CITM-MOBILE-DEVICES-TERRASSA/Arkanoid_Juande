@@ -93,4 +93,11 @@ public class GameManager : MonoBehaviour
     {
         GameData.SaveData(lives, points, SceneManager.GetActiveScene().name); // Guardar los datos manualmente si es necesario
     }
+
+    // Nuevo método para poner el High Score en cero
+    public void ResetHighScore()
+    {
+        GameData.SaveHighScore(0); // Guarda el nuevo High Score como cero
+        UpdateHighScoreUI(); // Actualiza la UI para reflejar el cambio
+    }
 }

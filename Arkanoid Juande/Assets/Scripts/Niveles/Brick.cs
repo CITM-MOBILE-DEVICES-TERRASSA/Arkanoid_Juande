@@ -29,12 +29,19 @@ public class Brick : MonoBehaviour
 
     private void HandleCollision()
     {
+        // Obtén la referencia al ParticleManager y crea el efecto de golpe
+        ParticleManager particleManager = FindObjectOfType<ParticleManager>();
+        if (particleManager != null)
+        {
+            particleManager.CreateHitParticle(transform.position); // Crea el efecto de golpe
+        }
+
         LoseLife(1);
     }
 
     public void LoseLife(int damage)
     {
-        lives-=damage; // Reduce una vida
+        lives -= damage; // Reduce una vida
         Debug.Log($"Vidas restantes: {lives}"); // Para depuración
 
         if (lives > 0)
@@ -49,7 +56,7 @@ public class Brick : MonoBehaviour
 
     private void HandleBrickDestruction()
     {
-        // Obtén la referencia al ParticleManager y crea el efecto
+        // Obtén la referencia al ParticleManager y crea el efecto de muerte
         ParticleManager particleManager = FindObjectOfType<ParticleManager>();
         if (particleManager != null)
         {
@@ -79,7 +86,6 @@ public class Brick : MonoBehaviour
 
         Destroy(gameObject); // Destruye el brick si no tiene más vidas
     }
-
 
     private void UpdateColor()
     {
