@@ -9,6 +9,9 @@ public class MainMenu : MonoBehaviour
     public TextMeshProUGUI continueText;       // Texto del botón de continuar
     public TextMeshProUGUI livesText;          // Texto para mostrar las vidas
     public TextMeshProUGUI pointsText;         // Texto para mostrar los puntos
+    public TextMeshProUGUI currentSceneText;   // Texto para mostrar el nombre de la escena
+    public TextMeshProUGUI highScoreText;      // Texto para mostrar el High Score
+
 
     private void Start()
     {
@@ -21,7 +24,7 @@ public class MainMenu : MonoBehaviour
         {
             // Desactiva el botón y cambia el color y el texto
             continueButton.interactable = false;
-            continueText.text = "Sin Datos";
+            continueText.text = "No save data";
             ColorBlock colors = continueButton.colors;
             colors.normalColor = Color.gray;
             colors.disabledColor = Color.gray;
@@ -31,20 +34,29 @@ public class MainMenu : MonoBehaviour
         {
             // Si hay datos, activa el botón y actualiza el texto de vidas y puntos
             continueButton.interactable = true;
-            continueText.text = "Continuar";
-            livesText.text = "Vidas: " + savedLives; // Actualiza el texto de vidas
-            pointsText.text = "Puntos: " + savedPoints; // Actualiza el texto de puntos
+            continueText.text = "Continue";
+            livesText.text = "Lives: " + savedLives; // Actualiza el texto de vidas
+            pointsText.text = "Points: " + savedPoints; // Actualiza el texto de puntos
+
+            // Cargar y mostrar el nombre de la escena donde se quedó el jugador
+            string currentScene = GameData.LoadCurrentScene();
+            currentSceneText.text = "Map: " + currentScene; // Actualiza el texto con el nombre de la escena
         }
+
+        // Cargar y mostrar el High Score
+        int highScore = GameData.LoadHighScore();
+        highScoreText.text = "" + highScore; // Actualiza el texto con el High Score
     }
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene("Game"); // Carga la escena principal del juego
+        string currentScene = GameData.LoadCurrentScene(); // Carga la escena guardada
+        SceneManager.LoadScene(currentScene); // Carga la escena
     }
 
     public void NewGame()
     {
         GameData.ResetData(); // Reinicia los datos guardados
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Level1");
     }
 }

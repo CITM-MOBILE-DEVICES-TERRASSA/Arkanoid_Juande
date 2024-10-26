@@ -29,8 +29,7 @@ public class GameManager : MonoBehaviour
         lives = 3; // O el valor que desees
         points = 0; // Reinicia los puntos
 
-        // Guarda los nuevos datos (vidas y puntos)
-        GameData.SaveData(lives, points);
+        GameData.SaveData(lives, points, SceneManager.GetActiveScene().name); // Guarda los datos y la escena actual
 
         UpdateUI(); // Actualiza la UI
     }
@@ -47,7 +46,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Guardar el nuevo estado de vidas
-            GameData.SaveData(lives, points);
+            GameData.SaveData(lives, points, SceneManager.GetActiveScene().name);
             ResetLevel();
         }
     }
@@ -58,7 +57,7 @@ public class GameManager : MonoBehaviour
         UpdateUI(); // Actualiza la UI al ganar puntos
 
         // Guardar el nuevo estado de puntos
-        GameData.SaveData(lives, points);
+        GameData.SaveData(lives, points, SceneManager.GetActiveScene().name);
         CheckHighScore(); // Verifica y guarda la puntuación máxima
     }
 
@@ -92,6 +91,6 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        GameData.SaveData(lives, points); // Guardar los datos manualmente si es necesario
+        GameData.SaveData(lives, points, SceneManager.GetActiveScene().name); // Guardar los datos manualmente si es necesario
     }
 }

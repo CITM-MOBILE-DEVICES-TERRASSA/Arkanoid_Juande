@@ -4,15 +4,24 @@ public class GameData : MonoBehaviour
 {
     private const string LivesKey = "Lives";
     private const string PointsKey = "Points";
-    private const string HighScoreKey = "HighScore"; // Clave para la puntuación máxima
+    private const string HighScoreKey = "HighScore";
+    private const string CurrentSceneKey = "CurrentScene"; // Clave para la escena actual
 
-    // Método para guardar las vidas y los puntos en PlayerPrefs
-    public static void SaveData(int lives, int points)
+    // Método para guardar las vidas, puntos y la escena actual
+    public static void SaveData(int lives, int points, string currentScene)
     {
         PlayerPrefs.SetInt(LivesKey, lives);
         PlayerPrefs.SetInt(PointsKey, points);
+        PlayerPrefs.SetString(CurrentSceneKey, currentScene); // Guarda la escena actual
         PlayerPrefs.Save(); // Guarda los datos en disco
     }
+
+    // Método para cargar la escena guardada
+    public static string LoadCurrentScene()
+    {
+        return PlayerPrefs.GetString(CurrentSceneKey, "MainMenu"); // Devuelve "MainMenu" si no existe
+    }
+
 
     // Método para cargar las vidas guardadas; si no existe el dato, devuelve un valor predeterminado
     public static int LoadLives(int defaultLives = 3)
