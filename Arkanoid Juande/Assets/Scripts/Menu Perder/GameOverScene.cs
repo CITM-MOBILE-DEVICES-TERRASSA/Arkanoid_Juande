@@ -10,10 +10,9 @@ public class GameOverScene : MonoBehaviour
 
     public void ResetGame()
     {
+        GameData.ResetData();  // Borra las vidas y puntos guardados
         SceneManager.LoadScene("MainMenu");
     }
-
-
 
 
 }
