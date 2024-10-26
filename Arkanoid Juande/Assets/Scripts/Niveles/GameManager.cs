@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -19,6 +17,10 @@ public class GameManager : MonoBehaviour
         lives = GameData.LoadLives();
         points = GameData.LoadPoints();
 
+        // Carga el índice de la escena actual
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        GameData.SaveData(lives, points, currentSceneIndex); // Guardar el estado inicial
+
         UpdateUI(); // Actualiza la UI al iniciar el juego
         UpdateHighScoreUI(); // Actualiza la UI de la puntuación máxima
     }
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
         lives = 3; // O el valor que desees
         points = 0; // Reinicia los puntos
 
-        GameData.SaveData(lives, points, SceneManager.GetActiveScene().name); // Guarda los datos y la escena actual
+        GameData.SaveData(lives, points, SceneManager.GetActiveScene().buildIndex); // Guarda los datos y la escena actual
 
         UpdateUI(); // Actualiza la UI
     }
@@ -46,7 +48,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Guardar el nuevo estado de vidas
-            GameData.SaveData(lives, points, SceneManager.GetActiveScene().name);
+            GameData.SaveData(lives, points, SceneManager.GetActiveScene().buildIndex);
             ResetLevel();
         }
     }
@@ -57,7 +59,7 @@ public class GameManager : MonoBehaviour
         UpdateUI(); // Actualiza la UI al ganar puntos
 
         // Guardar el nuevo estado de puntos
-        GameData.SaveData(lives, points, SceneManager.GetActiveScene().name);
+        GameData.SaveData(lives, points, SceneManager.GetActiveScene().buildIndex);
         CheckHighScore(); // Verifica y guarda la puntuación máxima
     }
 
@@ -91,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        GameData.SaveData(lives, points, SceneManager.GetActiveScene().name); // Guardar los datos manualmente si es necesario
+        GameData.SaveData(lives, points, SceneManager.GetActiveScene().buildIndex); // Guardar los datos manualmente si es necesario
     }
 
     // Nuevo método para poner el High Score en cero

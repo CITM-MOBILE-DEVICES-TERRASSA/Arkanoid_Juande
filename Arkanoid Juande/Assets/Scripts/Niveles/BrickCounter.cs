@@ -1,33 +1,41 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BrickCounter : MonoBehaviour
 {
-    public List<GameObject> bricks; // Lista para almacenar los bricks
+    private int totalBricks; // Contador para los bricks totales
+    private int bricksDestroyed; // Contador para los bricks destruidos
 
     private void Start()
     {
-        // Encuentra todos los objetos con el tag "Brick" y los agrega a la lista
-        bricks = new List<GameObject>(GameObject.FindGameObjectsWithTag("Brick"));
-        Debug.Log("Bricks contados: " + bricks.Count);
+        // Encuentra todos los objetos con el tag "Brick" y cuenta cuántos hay
+        GameObject[] brickObjects = GameObject.FindGameObjectsWithTag("Brick");
+        totalBricks = brickObjects.Length;
+        bricksDestroyed = 0; // Inicializa el contador de bricks destruidos
+        Debug.Log("Bricks contados: " + totalBricks);
     }
 
-    // Método para ser llamado cuando un brick es destruido
+    // Método que debe ser llamado cuando un brick es destruido
     public void BrickDestroyed()
     {
-        bricks.RemoveAt(0); // Remueve el brick destruido
+        bricksDestroyed++; // Incrementa el contador de bricks destruidos
+        Debug.Log("Bricks destruidos: " + bricksDestroyed);
 
-        // Comprobar si quedan bricks
-        if (bricks.Count == 0)
+        // Comprobar si todos los bricks han sido destruidos
+        if (bricksDestroyed >= totalBricks)
         {
-            LoadNextScene(); // Carga la nueva escena si no quedan bricks
+            LoadWinMenu(); // Carga el WinMenu si no quedan bricks
         }
     }
 
-    private void LoadNextScene()
+    private void LoadWinMenu()
     {
-        SceneManager.LoadScene("Level2");
+        // Guarda el índice de la escena actual
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        GameData.SaveData(GameData.LoadLives(), GameData.LoadPoints(), currentSceneIndex); // Guarda datos
+
+        // Carga el WinMenu
+        SceneManager.LoadScene("WinMenu");
     }
 }

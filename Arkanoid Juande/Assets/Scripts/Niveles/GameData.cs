@@ -5,23 +5,22 @@ public class GameData : MonoBehaviour
     private const string LivesKey = "Lives";
     private const string PointsKey = "Points";
     private const string HighScoreKey = "HighScore";
-    private const string CurrentSceneKey = "CurrentScene"; // Clave para la escena actual
+    private const string CurrentSceneIndexKey = "CurrentSceneIndex"; // Clave para el índice de la escena actual
 
-    // Método para guardar las vidas, puntos y la escena actual
-    public static void SaveData(int lives, int points, string currentScene)
+    // Método para guardar las vidas, puntos y el índice de la escena actual
+    public static void SaveData(int lives, int points, int currentSceneIndex)
     {
         PlayerPrefs.SetInt(LivesKey, lives);
         PlayerPrefs.SetInt(PointsKey, points);
-        PlayerPrefs.SetString(CurrentSceneKey, currentScene); // Guarda la escena actual
+        PlayerPrefs.SetInt(CurrentSceneIndexKey, currentSceneIndex); // Guarda el índice de la escena actual
         PlayerPrefs.Save(); // Guarda los datos en disco
     }
 
-    // Método para cargar la escena guardada
-    public static string LoadCurrentScene()
+    // Método para cargar el índice de la escena guardada
+    public static int LoadCurrentSceneIndex()
     {
-        return PlayerPrefs.GetString(CurrentSceneKey, "MainMenu"); // Devuelve "MainMenu" si no existe
+        return PlayerPrefs.GetInt(CurrentSceneIndexKey, 0); // Devuelve 0 si no existe
     }
-
 
     // Método para cargar las vidas guardadas; si no existe el dato, devuelve un valor predeterminado
     public static int LoadLives(int defaultLives = 3)
@@ -53,6 +52,7 @@ public class GameData : MonoBehaviour
     {
         PlayerPrefs.DeleteKey(LivesKey);
         PlayerPrefs.DeleteKey(PointsKey);
+        PlayerPrefs.DeleteKey(CurrentSceneIndexKey); // Borrar el índice de la escena
         PlayerPrefs.Save();
     }
 }
